@@ -55,7 +55,39 @@ Who is reponsible for managing the cluster? Where is the information about membe
 
 When you install Kubernetes in a system you are actually installing the following components:
 
-- An API server.
-- `etcd` service.
-- `kubelet` service.
-- A container runtime.
+- API server  
+  The Kubernetes frontend. Users, administration devices, CLIs, everyone talks to the API server to interact with the Kubernetes cluster.
+
+- `etcd` service  
+  It's a distributed key-value store used to save all the data its used to mantain the cluster. `etcd` is reponsible of implementing the locks within the cluster to ensure that there are no conflicts between the masters.
+
+- Scheduler  
+  Responsible for distributing work on containers across multiple nodes. It locks for newly created containers and assigns them to nodes.
+
+- Controller  
+  The controllers are the brain behind orchestration, they are responsible for noticing and responding when nodes, containers or endpoints go down, controllers make decisions to bring up new containers in such cases.
+
+- Container runtime
+  The container runtime is the underlying software that is used to run containers, we will be using Docker but there are other options.
+
+- `kubelet` service  
+  It is the agent that runs on each node in the cluster.
+
+## Master vs Worker Nodes
+
+We saw two types of servers, **master** and **worker** and a set of components that make up Kubernetes... But how does one server become a master and the other slave? The minion node is where the containers are hosted, to run containers we need a **container runtime** and that is where the container runtime falls. The master server has the kube **API server** and that is what makes it a master. Similarly, the worker nodes have the `kubelet` agent that is reponsible of interacting with the server to provide health information of the worker node and carry out actions requested by the master on the worker nodes. All the information gathered is stored in the key-value store on the master. The master also has the **controller** and the **scheduler**. With this, you can understand what components constitute the master and worker nodes.
+
+![](../assets/img/master-vs-worker.png "Master vs Workers")
+
+## What is `kubectl`?
+
+The `kubectl` tool is used to deploy and manage applications on a Kubernetes cluster, to get cluster information, to get the status of nodes in the cluster, and to manage many other things. Examples:
+
+`kubectl run hello-minikube`  
+Command used to deploy applications on the cluster.
+
+`kubectl cluster-info`  
+Command used to view information about the cluster.
+
+`kubectl get nodes`  
+Command used to list all the nodes part of the cluster.
