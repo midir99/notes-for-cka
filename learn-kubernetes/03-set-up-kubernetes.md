@@ -1,0 +1,3 @@
+# Set up Kubernetes
+
+There are some options to build a Kubernetes cluster... We can set up it ourselves locally on our laptops or virtual machines using solutions like **Minicube** or **MicroK8s**, those are solutions for developers or those who want to just play around and learn Kubernetes. On the other side, **Kubeadm** is used to bootstrap and manage production grade Kubernetes clusters. Also, there are hosted solutions like AWS, Azure, GCP, 
