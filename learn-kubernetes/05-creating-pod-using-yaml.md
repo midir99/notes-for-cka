@@ -1,4 +1,4 @@
-# Creating a POD using Yaml
+# Creating a POD using YAML
 
 ## YAML?
 
